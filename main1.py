@@ -77,7 +77,28 @@ def afficher_livres():
         print("Categorie :", livre["categorie"])
         print("Annee :", livre["annee"])
         print("Exemplaires :", livre["total"])
+def rechercher():
+    valeur = input("Recherche : ").strip().lower()
+    trouve = False
 
+    for livre in livres:
+        if (valeur in livre["titre"].lower()
+            or valeur in livre["auteur"].lower()
+            or valeur in livre["categorie"].lower()
+            or valeur == str(livre["id"])):
+
+            print("------------------------")
+            print("ID :", livre["id"])
+            print("Titre :", livre["titre"])
+            print("Auteur :", livre["auteur"])
+            print("Categorie :", livre["categorie"])
+            print("Annee :", livre["annee"])
+            print("Exemplaires :", livre["total"])
+
+            trouve = True
+
+    if trouve == False:
+        print("Aucun resultat trouve")
 def quitter():
     print("Au revoir !")
 while True:
@@ -86,12 +107,15 @@ while True:
     print("================================")
     print("1. Ajouter un livre")
     print("2. Afficher les livres")
+    print("3.rechercher un livre")
     print("0. Quitter")
     choix = input("\nVotre choix : ")
     if choix == "1":
         ajouter_livre()
     elif choix == "2":
         afficher_livres()
+    elif choix=="3":
+        rechercher()
     elif choix == "0":
         quitter()
         break
